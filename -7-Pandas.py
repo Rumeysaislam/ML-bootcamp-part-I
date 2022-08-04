@@ -45,16 +45,16 @@ df["sex"].count()           # "sex" degiskeninin toplam deger sayisi
 import pandas as pd
 import seaborn as sns
 pd.set_option('display.max_columns', None)       # Cıktıda tum degiskenleri gormek icin yaptik bu ayari.
-pd.set_option('display.width', 500)              # Tüm veri setinin yan-yana olmasini istiyorum.
+pd.set_option('display.width', 500)              # Tüm veri setinin yan-yana olmasini istiyoruz.
 df = sns.load_dataset("titanic")
 df.head()
 
 df.index
 df[0:13]                                         # 0'dan 13'e kadar olan index degerleri
-df.drop(0, axis = 0).head()                      # 0. indexteki satiri sildim
+df.drop(0, axis = 0).head()                      # 0. indexteki satiri sildik
 
 delete_indexes = [1, 3, 5, 7]
-df.drop(delete_indexes, axis = 0).head(10)       # Verilen indexlerdeki satirlari sildim.
+df.drop(delete_indexes, axis = 0).head(10)       # Verilen indexlerdeki satirlari sildik.
 
 # df = df.drop(delete_indexes, axis=0)
 # df.drop(delete_indexes, axis=0, inplace=True)
@@ -127,12 +127,12 @@ df.drop(["age", "adult_male", "alive"], axis = 1).head()
 df.drop(col_names, axis = 1).head()       # Coklu degisken silme
 
 
-### Belirli bir string ifadeyi barındıran degiskenleri silmek istiyorum;
+### Belirli bir string ifadeyi barındıran degiskenleri silmek istiyoruz;
 df.loc[:, df.columns.str.contains("age")].head()
 
 #loc: label base secim yapmak icin kullanilir.
-# [: , ...] Butun satirlari sectik, sutunlarla ilgili islem yapiyorum.
-# bu df'in sutunlarındaki degiskenlere bir string operasyonu yapacagim.
+# [: , ...] Butun satirlari sectik, sutunlarla ilgili islem yapiyoruz.
+# bu df'in sutunlarındaki degiskenlere bir string operasyonu yapacagiz.
 # "contains" : stringlere uygulanan bir method. Verilen string ifadeyi, ondan onceki sgtringde arar.
 # Boylelikle "age" barindiranlari secmis olduk.
 
@@ -156,7 +156,7 @@ df.iloc[0, 0]               # 0. satir, 0. sutundaki elemani sectik.
 df.loc[0:3]                 # 0, 1, 2 ,3. elemanları secti. Label yani etiket nasilsa onu mutlak olarak secer.
 
 # Aradaki farki anlamak icin;
-df.iloc[0:3, 0:4]           # Satirlarda 0'dan 3'e gitmek istiyorum.
+df.iloc[0:3, 0:4]           # Satirlarda 0'dan 3'e gitmek istiyoruz.
 df.iloc[0:3, "age"]         # Hata verir, integer bilgi bekler.
 
 df.loc[0:3, "age"]
@@ -170,7 +170,7 @@ df.loc[0:3, col_names]
 
 # Koşullu Seçim (Conditional Selection);
 
-# Veri setinde yasi 50'den buyuk olanlari secmek istiyorum;
+# Veri setinde yasi 50'den buyuk olanlari secmek istiyoruz;
 # Kosulu ve kosulun hangi degiskene uygulanacagi bilgisini girdik;
 df[df["age"] > 50].head()
 
@@ -178,10 +178,10 @@ df[df["age"] > 50].head()
 df[df["age"] > 50].count()                       # Ciktida karisiklik var cunku secim islemi yapmadik.
 df[df["age"] > 50]["age"].count()
 
-# Yasi 50'den buyuk olan kisilerin class bilgilerini ogrenmek istedigimde;
+# Yasi 50'den buyuk olan kisilerin class bilgilerini ogrenmek istedigimizde;
 df.loc[df["age"] > 50, ["age", "class"]].head()  # Bir kosul + iki sutun secmis olduk.
 
-# Yasi 50'den buyuk erkekleri secmek istiyorum; " iki kosul + iki sutun"
+# Yasi 50'den buyuk erkekleri secmek istiyoruz; " iki kosul + iki sutun"
 df.loc[(df["age"] > 50) & (df["sex"] == "male"), ["age", "class"]].head()
 # Kosullar parantez icerisine alinir ve "&" ile baglanir.
 
@@ -232,14 +232,14 @@ pd.set_option('display.max_columns', None)
 df = sns.load_dataset("titanic")
 df.head()
 
-# Kadinlarin ve erkeklerin yas ortalamasina erismek istiyorum;
+# Kadinlarin ve erkeklerin yas ortalamasina erismek istiyoruz;
 
 df["age"].mean()                   # Yas ortalamasi
 
 # Cinsiyete gore yas ortalamasini grupladik: Cinsiyete gore "group by" islemi yapiyoruz;
 df.groupby("sex")["age"].mean()    # Yas degiskeninin ortalamasini aldik.
 
-# Sadece ort. degil toplamini da ogrenmek istiyorum; (agg.: aggregation)
+# Sadece ort. degil toplamini da ogrenmek istiyoruz; (agg.: aggregation)
 df.groupby("sex").agg({"age": "mean"})              # Yas degiskeninin ortalamasini aldik. Bu kullanim onemli cunku agg ile birden cok fonk. kullanabiliyoruz.. (*)
 df.groupby("sex").agg({"age": ["mean", "sum"]})     # Veriyi cinsiyete gore kirdik. Yasin ort. ve toplamini elde ettik.
 
@@ -279,7 +279,7 @@ pd.set_option('display.max_columns', None)
 df = sns.load_dataset("titanic")
 df.head()
 
-# 1.deger: Kesisimlerde neyi gormek istedigim, 2.deger: satırda indexte gormek istedigim, 3.deger: sütunda gormek istedigim.
+# 1.deger: Kesisimlerde neyi gormek istedigimiz, 2.deger: satırda indexte gormek istedigimiz, 3.deger: sütunda gormek istedigimiz.
 df.pivot_table("survived", "sex", "embarked")
 # Survived'ın ortalamasi geldi. Cunku pivot table'in on tanimli degeri mean()'dir.
 
@@ -293,7 +293,7 @@ df.head()
 # Sutunlarda iki index satirlarda tek index var.
 
 
-# Hem cinsiyet kirilimi, hem gemiye binilen lokasyonu, yaslara gore de bir kirilim istiyorum;
+# Hem cinsiyet kirilimi, hem gemiye binilen lokasyonu, yaslara gore de bir kirilim istiyoruz;
 
 # Veri setindeki yas degiskeni sayisal bir degisken. Kategorik degiskene cevirmeliyiz;
 ### cut ve qcut: Sayisal degiskeni kategorik degiskene cevirmek icin kullanilir.
@@ -303,7 +303,7 @@ df.head()
 df["new_age"] = pd.cut(df["age"], [0, 10, 18, 25, 40, 90])
 
 df.pivot_table("survived", "sex", "new_age")
-# 1.deger: Kesisimlerde neyi gormek istedigim, 2.deger: satırda indexte gormek istedigim, 3.deger: sütunda gormek istedigim.
+# 1.deger: Kesisimlerde neyi gormek istedigimiz, 2.deger: satırda indexte gormek istedigimiz, 3.deger: sütunda gormek istedigimiz.
 
 # Boyut eklemek istersem;
 df.pivot_table("survived", "sex", ["new_age", "class"])
@@ -337,7 +337,7 @@ df["age"]/10.head()         # hata verir, parantez icine alacagiz.
 (df["age2"]/10).head()
 (df["age3"]/10).head()
 
-## Donguyle yazmak istersek; (Degiskenlere fonk. uygulamak istiyorum.)
+## Donguyle yazmak istersek; (Degiskenlere fonk. uygulamak istiyoruz.)
 for i in df.columns:
     if "age" in i:
         print(i)
@@ -378,7 +378,7 @@ df.loc[:, df.columns.str.contains("age")].apply(standart_scaler).head()
 
 # Daha otomatik kaydetmek icin; :D
 df.loc[:, df.columns.str.contains("age")] = df.loc[:, df.columns.str.contains("age")].apply(standart_scaler)
-# Sol tarafta istedigim yeri sectim, sag tarafta istedigim yere fonksiyon uyguladim.
+# Sol tarafta istedigimiz yeri sectimiz, sag tarafta istedigimiz yere fonksiyon uyguladik.
 df.head()
 
 
@@ -404,7 +404,7 @@ pd.concat([df1, df2], ignore_index=True)
 
 # MERGE ile Birleştirme İslemleri
 
-# pd.DataFrame: Bana bir veri ver onu DataFrame'e ceviririm. :)
+# pd.DataFrame: Bana bir veri ver onu DataFrame'e ceviririz. :)
 
 # Calisanlar ve calistiklari departmanlri gosteren df;
 df1 = pd.DataFrame({'employees': ['john', 'dennis', 'mark', 'maria'],
@@ -415,7 +415,7 @@ df2 = pd.DataFrame({'employees': ['mark', 'john', 'dennis', 'maria'],
                     'start_date': [2010, 2009, 2014, 2019]})
 
 
-# Bu iki veriyi birlestirmek istiyorum;
+# Bu iki veriyi birlestirmek istiyoruz;
 pd.merge(df1, df2)  # Bu da calisir,
 pd.merge(df1, df2, on="employees")
 # on="employees": calisanlara gore birlestirme islemi yapmak istedigimizi soyledik.
